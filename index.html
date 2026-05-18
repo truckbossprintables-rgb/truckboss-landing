@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="TruckBoss — the all-in-one app for owner-operators. Real-time load profitability, document library, automatic reminders. Built by truckers, for truckers." />
+<meta property="og:title" content="TruckBoss — Know if a load is worth it before you take it." />
+<meta property="og:description" content="The only app an owner-operator needs. Decide loads, get paid, stay legal — all in one place." />
+<meta property="og:type" content="website" />
+<title>TruckBoss — Know if a load is worth it before you take it.</title>
+
+<!--
+  ============================================================
+  TRUCKBOSS LANDING PAGE — v1
+  ============================================================
+  TO MAKE THE WAITLIST FORM ACTUALLY COLLECT EMAILS:
+  1. Go to https://formspree.io  (free tier: 50 submissions/mo)
+  2. Create a free account, create a new form
+  3. Replace "YOUR_FORMSPREE_ID" in the <form action=""> below
+     with your form's ID (looks like "xyzabcde")
+  4. Done. Submissions arrive in your email + Formspree dashboard.
+
+  ALTERNATIVE PROVIDERS (just swap the action URL):
+  - Tally:       https://tally.so      (no setup, prettier forms)
+  - ConvertKit:  https://convertkit.com (built for email marketing)
+  - Netlify:     add data-netlify="true" to <form> if hosting on Netlify
+  ============================================================
+-->
+
+<style>
+  :root {
+    --bg: #0F1419;
+    --bg-elev: #1A1F26;
+    --bg-card: #232932;
+    --text: #FFFFFF;
+    --text-muted: #A8B0BC;
+    --text-dim: #6B7380;
+    --accent: #FFB800;
+    --accent-dark: #C68A00;
+    --accent-warm: #FF6B35;
+    --green: #4ADE80;
+    --red: #F87171;
+    --border: #2A323D;
+    --shadow: 0 10px 40px rgba(0,0,0,0.4);
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(15, 20, 25, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 16px 0;
+  }
+  nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+  .logo span { color: var(--accent); }
+  nav ul { display: flex; gap: 32px; list-style: none; }
+  nav ul a { color: var(--text-muted); font-weight: 500; font-size: 15px; }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+  .nav-cta {
+    background: var(--accent);
+    color: #1A1300;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .nav-cta:hover { background: #FFC933; text-decoration: none; }
+  @media (max-width: 720px) {
+    nav ul { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    padding: 80px 0 100px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at top right, rgba(255, 184, 0, 0.08), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(255, 107, 53, 0.06), transparent 50%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+  }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .eyebrow {
+    display: inline-block;
+    background: rgba(255, 184, 0, 0.12);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 184, 0, 0.25);
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p.lead {
+    font-size: 19px;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-bottom: 36px;
+  }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+  }
+  .btn:hover { transform: translateY(-1px); text-decoration: none; }
+  .btn-primary {
+    background: var(--accent);
+    color: #1A1300;
+    box-shadow: 0 4px 20px rgba(255, 184, 0, 0.25);
+  }
+  .btn-primary:hover { background: #FFC933; box-shadow: 0 6px 24px rgba(255, 184, 0, 0.35); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--text-muted); }
+
+  .hero-trust {
+    margin-top: 36px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .hero-trust span::before { content: '✓ '; color: var(--green); font-weight: 700; }
+
+  /* ---------- PHONE MOCKUP ---------- */
+  .mockup {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transform: rotate(1deg);
+    transition: transform 0.3s ease;
+  }
+  .mockup:hover { transform: rotate(0deg); }
+  .mockup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .mockup-header .label {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .mockup-header .lane {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 700;
+  }
+  .mockup-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .mockup-stat {
+    background: rgba(255,255,255,0.03);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .mockup-stat .k { font-size: 11px; color: var(--text-dim); text-transform: uppercase; }
+  .mockup-stat .v { font-size: 18px; color: var(--text); font-weight: 700; margin-top: 4px; }
+  .mockup-verdict {
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    color: var(--green);
+    padding: 16px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .mockup-verdict .big { font-size: 28px; display: block; margin-bottom: 4px; }
+  .mockup-detail {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* ---------- SECTION BASE ---------- */
+  section { padding: 90px 0; }
+  .section-header { text-align: center; max-width: 720px; margin: 0 auto 60px; }
+  .section-eyebrow {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-header p {
+    color: var(--text-muted);
+    font-size: 18px;
+  }
+
+  /* ---------- PROBLEM ---------- */
+  .problem { background: var(--bg-elev); }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .problem-item {
+    background: var(--bg-card);
+    padding: 28px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .problem-item .icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .problem-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .problem-item p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  /* ---------- PILLARS ---------- */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .pillars-grid { grid-template-columns: 1fr; }
+  }
+  .pillar {
+    background: var(--bg-card);
+    padding: 36px 28px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+  }
+  .pillar .num {
+    display: inline-block;
+    background: rgba(255, 184, 0, 0.12);
+    color: var(--accent);
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+  .pillar h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .pillar p { color: var(--text-muted); margin-bottom: 16px; }
+  .pillar ul { list-style: none; }
+  .pillar ul li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    color: var(--text-muted);
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pillar ul li:last-child { border-bottom: none; }
+  .pillar ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features { background: var(--bg-elev); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .feature {
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .feature .icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 184, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .feature h4 { font-size: 16px; margin-bottom: 6px; }
+  .feature p { color: var(--text-muted); font-size: 14px; }
+
+  /* ---------- PRICING ---------- */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 840px;
+    margin: 0 auto;
+  }
+  @media (max-width: 760px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+  .plan {
+    background: var(--bg-card);
+    padding: 36px 32px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .plan.featured {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, rgba(255,184,0,0.05), var(--bg-card));
+  }
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: var(--accent);
+    color: #1A1300;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .plan h3 { font-size: 22px; margin-bottom: 6px; }
+  .plan .tagline { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+  .plan .price { font-size: 42px; font-weight: 900; letter-spacing: -1px; }
+  .plan .price .per { font-size: 16px; color: var(--text-muted); font-weight: 500; }
+  .plan .price-note { color: var(--text-dim); font-size: 13px; margin-top: 4px; margin-bottom: 24px; }
+  .plan ul { list-style: none; margin-bottom: 24px; }
+  .plan ul li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+  .plan ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+  .founders-note {
+    text-align: center;
+    margin-top: 32px;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+  .founders-note strong { color: var(--accent); }
+
+  /* ---------- ABOUT ---------- */
+  .about { background: var(--bg-elev); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  @media (max-width: 800px) {
+    .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  }
+  .about h2 { margin-bottom: 20px; }
+  .about p { color: var(--text-muted); margin-bottom: 16px; font-size: 17px; }
+  .about-visual {
+    background: var(--bg-card);
+    padding: 32px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .about-visual h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .about-visual ul { list-style: none; }
+  .about-visual ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+  .about-visual ul li:last-child { border-bottom: none; }
+  .about-visual ul li::before { content: '📄 '; }
+
+  /* ---------- CTA / FORM ---------- */
+  .cta-section {
+    background:
+      radial-gradient(ellipse at center, rgba(255, 184, 0, 0.08), transparent 70%),
+      var(--bg);
+    text-align: center;
+  }
+  .cta-section h2 { margin-bottom: 16px; }
+  .cta-section .lead {
+    color: var(--text-muted);
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+  .waitlist-form {
+    max-width: 520px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    padding: 32px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .waitlist-form .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  @media (max-width: 520px) { .waitlist-form .row { grid-template-columns: 1fr; } }
+  .waitlist-form input,
+  .waitlist-form select {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+  }
+  .waitlist-form input:focus,
+  .waitlist-form select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .waitlist-form input::placeholder { color: var(--text-dim); }
+  .waitlist-form button {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: #1A1300;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background 0.2s ease;
+  }
+  .waitlist-form button:hover { background: #FFC933; }
+  .form-note {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  .form-success {
+    display: none;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    color: var(--green);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: 600;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: #08090C;
+    padding: 60px 0 30px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  footer .logo { font-size: 24px; margin-bottom: 12px; display: inline-block; }
+  footer p { color: var(--text-dim); font-size: 14px; margin-bottom: 8px; }
+  footer .links {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  footer .links a { color: var(--text-muted); font-size: 14px; }
+
+  /* ---------- ACCESSIBILITY ---------- */
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="logo">Truck<span>Boss</span></a>
+    <ul>
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">For Owner-Operators</span>
+        <h1>Know if a load is <span class="highlight">worth it</span> before you take it.</h1>
+        <p class="lead">
+          TruckBoss is the all-in-one app for drivers who run their own business.
+          Real-time load profitability, document library, automatic reminders —
+          built for the way you actually work.
+        </p>
+        <div class="cta-row">
+          <a href="#waitlist" class="btn btn-primary">Join the Waitlist →</a>
+          <a href="#solution" class="btn btn-secondary">See How It Works</a>
+        </div>
+        <div class="hero-trust">
+          <span>Live trip tracking — stop texting locations</span>
+          <span>Founding member pricing</span>
+          <span>No credit card required</span>
+        </div>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-header">
+          <div>
+            <div class="label">Load Offer</div>
+            <div class="lane">ATL → DAL · 920 mi</div>
+          </div>
+          <div style="font-size: 22px; font-weight: 900; color: var(--accent);">$2,150</div>
+        </div>
+        <div class="mockup-stats">
+          <div class="mockup-stat">
+            <div class="k">Est. Fuel</div>
+            <div class="v">$548</div>
+          </div>
+          <div class="mockup-stat">
+            <div class="k">Est. Tolls</div>
+            <div class="v">$42</div>
+          </div>
+          <div class="mockup-stat">
+            <div class="k">Fixed Costs</div>
+            <div class="v">$385</div>
+          </div>
+          <div class="mockup-stat">
+            <div class="k">Net Profit</div>
+            <div class="v" style="color: var(--green);">$1,175</div>
+          </div>
+        </div>
+        <div class="mockup-verdict">
+          <span class="big">✓ TAKE IT</span>
+          $1.28/mi net · above your $1.10 target
+        </div>
+        <div class="mockup-detail">Based on live diesel prices along your route</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== PROBLEM ========== -->
+<section id="problem" class="problem">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">The Reality</div>
+      <h2>You didn't get into trucking to be buried in paperwork.</h2>
+      <p>But that's where most owner-operators end up. Fragmented tools, paper logs, surprise deadlines, and rate decisions made on gut feel.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="icon">📱</div>
+        <h3>Phone full of broker texts</h3>
+        <p>Rate confirmations buried in screenshots. Loads accepted before the math gets done.</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon">📑</div>
+        <h3>Receipts in a folder</h3>
+        <p>Fuel, lumper, scale, parking — somewhere. Maybe. Hopefully. By tax time? Good luck.</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon">⚠️</div>
+        <h3>Surprise deadlines</h3>
+        <p>IFTA. 2290. Registration. Insurance. Annual inspection. CDL physical. All in your head.</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon">💸</div>
+        <h3>2am math</h3>
+        <p>Is $1,850 Atlanta to Dallas worth it? After fuel, tolls, deadhead, parking? Who knows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SOLUTION / PILLARS ========== -->
+<section id="solution">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">How TruckBoss Helps</div>
+      <h2>Three things, done right.</h2>
+      <p>Not a thirty-feature dashboard you'll never use. Just the work that actually matters every day.</p>
+    </div>
+    <div class="pillars-grid">
+
+      <div class="pillar">
+        <div class="num">1</div>
+        <h3>Load Profitability, Live</h3>
+        <p>Punch in the rate. Get a verdict in 30 seconds — before you accept.</p>
+        <ul>
+          <li>Real-time diesel prices along your route</li>
+          <li>Toll &amp; parking estimates included</li>
+          <li>Your fixed costs allocated automatically</li>
+          <li>Take / negotiate / skip recommendation</li>
+        </ul>
+      </div>
+
+      <div class="pillar">
+        <div class="num">2</div>
+        <h3>Load &amp; Document Tracker</h3>
+        <p>Every load gets a folder. Every receipt finds its home. Automatically.</p>
+        <ul>
+          <li>Snap receipts — OCR reads the amount</li>
+          <li>BOL, POD, scale, lumper attached to load</li>
+          <li>Status: booked → delivered → paid</li>
+          <li>One-tap packet to broker or factor</li>
+        </ul>
+      </div>
+
+      <div class="pillar">
+        <div class="num">3</div>
+        <h3>Documents &amp; Reminders</h3>
+        <p>The whole TruckBossPrintables library included. Every deadline pushed to your phone.</p>
+        <ul>
+          <li>DVIRs, BOLs, IFTA, maintenance logs</li>
+          <li>Insurance &amp; registration alerts</li>
+          <li>IFTA quarters, 2290, CDL physical</li>
+          <li>Email + text notifications, 30/7/1 days out</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">What's Inside</div>
+      <h2>Built for how truckers actually work.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="icon">📍</div>
+        <h4>Live Trip Share</h4>
+        <p>Tap "Start Trip," text the broker one link. They see live position on a map until delivery. <strong>You stop texting locations from behind the wheel.</strong></p>
+      </div>
+      <div class="feature">
+        <div class="icon">⛽</div>
+        <h4>Live diesel prices</h4>
+        <p>By PADD region, updated weekly. Knows where you fuel cheapest along your route.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📸</div>
+        <h4>Receipt OCR</h4>
+        <p>Take a picture. The app reads the total, categorizes it, files it. You verify.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔧</div>
+        <h4>Maintenance scheduler</h4>
+        <p>PM intervals by mileage AND date. Never miss an oil change or tire rotation again.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📊</div>
+        <h4>IFTA quarterly prep</h4>
+        <p>Mileage by state, fuel by state, taxes calculated. Quarter-close in 10 minutes.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🏦</div>
+        <h4>Factoring workflow</h4>
+        <p>One tap to send invoice + paperwork to TBS, Triumph, Apex, RTS, or your factor.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🤝</div>
+        <h4>Broker memory</h4>
+        <p>Tracks what every broker pays you per lane. Negotiate from data, not memory.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📨</div>
+        <h4>Smart reminders</h4>
+        <p>Driver forgot to send the BOL? Auto-nudge. Broker silent on pay? Auto-follow-up.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📱</div>
+        <h4>Works on your phone</h4>
+        <p>Mobile-first. Built for truck-stop wifi. Offline-friendly where it matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Pricing</div>
+      <h2>Simple plans. Founding members locked in for life.</h2>
+      <p>Join the waitlist now and lock in 25% off forever when we launch.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="plan">
+        <h3>Solo</h3>
+        <p class="tagline">For the driver running 1 truck.</p>
+        <div class="price">$39<span class="per">/mo</span></div>
+        <div class="price-note">Founding members: <strong style="color: var(--accent);">$29/mo for life</strong></div>
+        <ul>
+          <li>Load profitability calculator</li>
+          <li>Document library (all printables)</li>
+          <li>Receipt capture (100/mo)</li>
+          <li>Reminder engine</li>
+          <li>Email support</li>
+        </ul>
+      </div>
+
+      <div class="plan featured">
+        <span class="plan-badge">Most popular</span>
+        <h3>Solo Pro</h3>
+        <p class="tagline">Run your truck like a real business.</p>
+        <div class="price">$69<span class="per">/mo</span></div>
+        <div class="price-note">Founding members: <strong style="color: var(--accent);">$49/mo for life</strong></div>
+        <ul>
+          <li>Everything in Solo</li>
+          <li>Unlimited receipt OCR</li>
+          <li>Live tolls + parking estimates</li>
+          <li>IFTA quarterly generator</li>
+          <li>Factoring auto-submit</li>
+          <li>P&amp;L reports</li>
+          <li>SMS reminders + priority support</li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="founders-note">
+      <strong>Fleet tier coming later</strong> · Small fleets (2–10 trucks) get their own version in 2026.
+    </p>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-eyebrow">Who's Building This</div>
+        <h2>From the team behind TruckBossPrintables.</h2>
+        <p>
+          We've spent years building the printable documents thousands of owner-operators
+          use to run their businesses — BOLs, DVIRs, IFTA worksheets, maintenance logs,
+          broker agreements, the whole library.
+        </p>
+        <p>
+          TruckBoss is the next step. Same documents, same focus on the driver who runs
+          their own show — now wired into one app that thinks for itself, tracks the dollars,
+          and never forgets a deadline.
+        </p>
+        <p>
+          We're building it slowly, on purpose. Truckers don't need another half-baked
+          app. They need one that works.
+        </p>
+      </div>
+      <div class="about-visual">
+        <h4>Included with every subscription</h4>
+        <ul>
+          <li>Bill of Lading (BOL)</li>
+          <li>Proof of Delivery (POD)</li>
+          <li>Driver Vehicle Inspection Report</li>
+          <li>IFTA mileage worksheet</li>
+          <li>Maintenance log</li>
+          <li>Lumper receipt log</li>
+          <li>Accident report kit</li>
+          <li>Broker-carrier agreement</li>
+          <li>...and the rest of the library</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WAITLIST / CTA ========== -->
+<section id="waitlist" class="cta-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Founding Members</div>
+      <h2>Get on the list. Lock in <span style="color: var(--accent);">25% off for life.</span></h2>
+      <p class="lead">
+        We'll email you when TruckBoss opens for early access. No spam, no upsells —
+        just a heads-up when it's ready and a founding-member discount that never expires.
+      </p>
+    </div>
+
+    <form
+      id="waitlistForm"
+      class="waitlist-form"
+      action="https://formspree.io/f/mzdwzzqk"
+      method="POST"
+    >
+      <div class="row">
+        <input type="text" name="first_name" placeholder="First name" required />
+        <input type="text" name="last_name" placeholder="Last name" required />
+      </div>
+      <input type="email" name="email" placeholder="Email address" required />
+      <div class="row" style="margin-top: 12px;">
+        <select name="role" required>
+          <option value="">I am a...</option>
+          <option value="owner-operator">Owner-Operator (1 truck)</option>
+          <option value="small-fleet">Small Fleet Owner (2–10 trucks)</option>
+          <option value="company-driver">Company Driver</option>
+          <option value="dispatcher">Dispatcher / Broker</option>
+          <option value="other">Other</option>
+        </select>
+        <select name="trucks" required>
+          <option value="">Truck count...</option>
+          <option value="1">1 truck</option>
+          <option value="2-5">2–5 trucks</option>
+          <option value="6-10">6–10 trucks</option>
+          <option value="11+">11+ trucks</option>
+          <option value="0">None yet</option>
+        </select>
+      </div>
+      <input type="text" name="biggest_headache" placeholder="What's your biggest business headache? (optional)" style="margin-top: 12px;" />
+      <button type="submit">Join the Waitlist →</button>
+      <p class="form-note">No credit card. No spam. Unsubscribe anytime.</p>
+      <div class="form-success" id="formSuccess">
+        ✓ You're on the list. Watch your inbox — we'll be in touch soon.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <a href="#" class="logo">Truck<span style="color: var(--accent);">Boss</span></a>
+    <p>An app for owner-operators who run their own business.</p>
+    <p>From the team behind TruckBossPrintables.</p>
+    <div class="links">
+      <a href="#problem">The Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#waitlist">Join Waitlist</a>
+    </div>
+    <p style="margin-top: 32px; font-size: 12px; color: var(--text-dim);">
+      &copy; 2026 TruckBossPrintables. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Submits the form to Formspree via fetch and swaps in the success message.
+  // Uses addEventListener (more reliable than inline onsubmit in sandboxed previews).
+  (function attachWaitlistHandler() {
+    const form = document.getElementById('waitlistForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const successEl = document.getElementById('formSuccess');
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      // Disable button + show pending state so users know something is happening
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          successEl.style.display = 'block';
+          // Scroll the success message into view in case the form was below the fold
+          successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          let msg = 'Something went wrong. Please try again, or email us directly.';
+          try {
+            const json = await res.json();
+            if (json && json.errors && json.errors.length) {
+              msg = json.errors.map(err => err.message).join(', ');
+            }
+          } catch (_) { /* ignore parse error */ }
+          alert(msg);
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Join the Waitlist →';
+          }
+        }
+      } catch (err) {
+        alert('Network error. Please try again.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Join the Waitlist →';
+        }
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

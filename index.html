@@ -404,12 +404,12 @@
   /* ---------- PRICING ---------- */
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 840px;
+    max-width: 1080px;
     margin: 0 auto;
   }
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
     .pricing-grid { grid-template-columns: 1fr; }
   }
   .plan {
@@ -614,7 +614,7 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#about">About</a></li>
     </ul>
-    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+    <a href="https://app.gettruckboss.app/signup" class="nav-cta">Start free trial</a>
   </div>
 </nav>
 
@@ -631,13 +631,13 @@
           built for the way you actually work.
         </p>
         <div class="cta-row">
-          <a href="#waitlist" class="btn btn-primary">Join the Waitlist →</a>
+          <a href="https://app.gettruckboss.app/signup" class="btn btn-primary">Start free trial →</a>
           <a href="#solution" class="btn btn-secondary">See How It Works</a>
         </div>
         <div class="hero-trust">
-          <span>Live trip tracking — stop texting locations</span>
+          <span>14 days free — no credit card</span>
           <span>Founding member pricing 🎉</span>
-          <span>No credit card required</span>
+          <span>Every feature, every plan</span>
         </div>
       </div>
 
@@ -823,44 +823,61 @@
     <div class="section-header">
       <div class="section-eyebrow">Pricing</div>
       <h2>Simple plans. Founding members locked in for life.</h2>
-      <p>Join the waitlist now and lock in 25% off forever when we launch.</p>
+      <p>Every feature in every plan — you only pay for trucks and seats. Start with a 14-day free trial, no credit card.</p>
     </div>
     <div class="pricing-grid">
 
       <div class="plan">
         <h3>Solo</h3>
-        <p class="tagline">For the driver running 1 truck.</p>
-        <div class="price">$39<span class="per">/mo</span></div>
-        <div class="price-note">Founding members: <strong style="color: var(--accent);">$29/mo for life</strong></div>
+        <p class="tagline">Owner-operator, 1 truck.</p>
+        <div class="price">$25<span class="per">/mo</span></div>
+        <div class="price-note">Founding members: <strong style="color: var(--accent);">$19/mo for life</strong></div>
         <ul>
-          <li>Load profitability calculator</li>
-          <li>Document library (all printables)</li>
-          <li>Receipt capture (100/mo)</li>
-          <li>Reminder engine</li>
-          <li>Email support</li>
+          <li><strong>1 truck</strong> · owner + 1 driver + 1 dispatcher</li>
+          <li>Load calculator with auto-mileage</li>
+          <li>IFTA, tax center &amp; receipt OCR</li>
+          <li>Invoicing + A/R tracking</li>
+          <li>Maintenance, credentials &amp; reminders</li>
+          <li>Live trip share + every printable template</li>
         </ul>
+        <a href="https://app.gettruckboss.app/signup" class="btn btn-primary" style="width:100%;text-align:center;margin-top:8px;">Start free trial</a>
       </div>
 
       <div class="plan featured">
         <span class="plan-badge">Most popular</span>
-        <h3>Solo Pro</h3>
-        <p class="tagline">Run your truck like a real business.</p>
+        <h3>Fleet Starter</h3>
+        <p class="tagline">Small fleet, up to 10 trucks.</p>
         <div class="price">$69<span class="per">/mo</span></div>
         <div class="price-note">Founding members: <strong style="color: var(--accent);">$49/mo for life</strong></div>
         <ul>
+          <li><strong>Up to 10 trucks</strong> · unlimited drivers + dispatchers</li>
           <li>Everything in Solo</li>
-          <li>Unlimited receipt OCR</li>
-          <li>Live tolls + parking estimates</li>
-          <li>IFTA quarterly generator</li>
-          <li>Factoring auto-submit</li>
-          <li>P&amp;L reports</li>
-          <li>SMS reminders + priority support</li>
+          <li>Fleet dashboard + per-truck rollups</li>
+          <li>Driver settlements + dispatcher pay tracking</li>
+          <li>Broker portal + team roles</li>
+          <li>Priority support</li>
         </ul>
+        <a href="https://app.gettruckboss.app/signup" class="btn btn-primary" style="width:100%;text-align:center;margin-top:8px;">Start free trial</a>
+      </div>
+
+      <div class="plan">
+        <h3>Fleet</h3>
+        <p class="tagline">Growing fleet, up to 50 trucks.</p>
+        <div class="price">$169<span class="per">/mo</span></div>
+        <div class="price-note">Founding members: <strong style="color: var(--accent);">$129/mo for life</strong></div>
+        <ul>
+          <li><strong>Up to 50 trucks</strong> · unlimited seats</li>
+          <li>Everything in Fleet Starter</li>
+          <li>Bulk invoicing across loads</li>
+          <li>Fleet-wide reporting</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="https://app.gettruckboss.app/signup" class="btn btn-primary" style="width:100%;text-align:center;margin-top:8px;">Start free trial</a>
       </div>
 
     </div>
     <p class="founders-note">
-      <strong>Fleet tier coming later</strong> · Small fleets (2–10 trucks) get their own version in 2026.
+      <strong>14-day free trial on every plan</strong> · no credit card required · founding prices locked in for life.
     </p>
   </div>
 </section>
@@ -909,50 +926,17 @@
 <section id="waitlist" class="cta-section">
   <div class="container">
     <div class="section-header">
-      <div class="section-eyebrow">Founding Members</div>
-      <h2>Get on the list. Lock in <span style="color: var(--accent);">25% off for life.</span></h2>
+      <div class="section-eyebrow">Start today</div>
+      <h2>Run your truck like a business. <span style="color: var(--accent);">Start free.</span></h2>
       <p class="lead">
-        We'll email you when TruckBoss opens for early access. No spam, no upsells —
-        just a heads-up when it's ready and a founding-member discount that never expires.
+        14 days free on any plan. No credit card to start. Founding-member
+        pricing locks in for life — the sooner you join, the less you ever pay.
       </p>
     </div>
-
-    <form
-      id="waitlistForm"
-      class="waitlist-form"
-      action="https://formspree.io/f/mzdwzzqk"
-      method="POST"
-    >
-      <div class="row">
-        <input type="text" name="first_name" placeholder="First name" required />
-        <input type="text" name="last_name" placeholder="Last name" required />
-      </div>
-      <input type="email" name="email" placeholder="Email address" required />
-      <div class="row" style="margin-top: 12px;">
-        <select name="role" required>
-          <option value="">I am a...</option>
-          <option value="owner-operator">Owner-Operator (1 truck)</option>
-          <option value="small-fleet">Small Fleet Owner (2–10 trucks)</option>
-          <option value="company-driver">Company Driver</option>
-          <option value="dispatcher">Dispatcher / Broker</option>
-          <option value="other">Other</option>
-        </select>
-        <select name="trucks" required>
-          <option value="">Truck count...</option>
-          <option value="1">1 truck</option>
-          <option value="2-5">2–5 trucks</option>
-          <option value="6-10">6–10 trucks</option>
-          <option value="11+">11+ trucks</option>
-          <option value="0">None yet</option>
-        </select>
-      </div>
-      <input type="text" name="biggest_headache" placeholder="What's your biggest business headache? (optional)" style="margin-top: 12px;" />
-      <button type="submit">Join the Waitlist →</button>
-      <p class="form-note">No credit card. No spam. Unsubscribe anytime.</p>
-      <div class="form-success" id="formSuccess">
-        ✓ You're on the list. Watch your inbox — we'll be in touch soon.
-      </div>
-    </form>
+    <div style="text-align:center;">
+      <a href="https://app.gettruckboss.app/signup" class="btn btn-primary" style="font-size:18px;padding:16px 40px;">Start your free trial →</a>
+      <p class="form-note" style="margin-top:14px;">No credit card required · cancel anytime · your data is yours.</p>
+    </div>
   </div>
 </section>
 
@@ -966,7 +950,7 @@
       <a href="#problem">The Problem</a>
       <a href="#solution">Solution</a>
       <a href="#pricing">Pricing</a>
-      <a href="#waitlist">Join Waitlist</a>
+      <a href="https://app.gettruckboss.app/signup">Start free trial</a>
       <a href="https://app.gettruckboss.app/terms">Terms of Service</a>
       <a href="https://app.gettruckboss.app/privacy">Privacy Policy</a>
     </div>

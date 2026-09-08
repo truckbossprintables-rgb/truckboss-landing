@@ -29,18 +29,18 @@
 
 <style>
   :root {
-    --bg: #0F1419;
-    --bg-elev: #1A1F26;
-    --bg-card: #232932;
+    --bg: #0D2240;
+    --bg-elev: #13294D;
+    --bg-card: #193559;
     --text: #FFFFFF;
-    --text-muted: #A8B0BC;
-    --text-dim: #6B7380;
-    --accent: #FFB800;
-    --accent-dark: #C68A00;
-    --accent-warm: #FF6B35;
+    --text-muted: #AEB8C6;
+    --text-dim: #7C8AA0;
+    --accent: #CBA24A;
+    --accent-dark: #A5822F;
+    --accent-warm: #E0C078;
     --green: #4ADE80;
     --red: #F87171;
-    --border: #2A323D;
+    --border: #2A4468;
     --shadow: 0 10px 40px rgba(0,0,0,0.4);
     --radius: 12px;
     --radius-lg: 20px;
@@ -73,7 +73,7 @@
   nav {
     position: sticky;
     top: 0;
-    background: rgba(15, 20, 25, 0.92);
+    background: rgba(13, 34, 64, 0.92);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     z-index: 100;
@@ -96,13 +96,13 @@
   nav ul a:hover { color: var(--text); text-decoration: none; }
   .nav-cta {
     background: var(--accent);
-    color: #1A1300;
+    color: #0D2240;
     padding: 10px 20px;
     border-radius: 8px;
     font-weight: 700;
     font-size: 14px;
   }
-  .nav-cta:hover { background: #FFC933; text-decoration: none; }
+  .nav-cta:hover { background: #E0C078; text-decoration: none; }
   @media (max-width: 720px) {
     nav ul { display: none; }
   }
@@ -118,8 +118,8 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background:
-      radial-gradient(ellipse at top right, rgba(255, 184, 0, 0.08), transparent 50%),
-      radial-gradient(ellipse at bottom left, rgba(255, 107, 53, 0.06), transparent 50%);
+      radial-gradient(ellipse at top right, rgba(203, 162, 74, 0.08), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(224, 192, 120, 0.06), transparent 50%);
     pointer-events: none;
   }
   .hero-grid {
@@ -135,7 +135,7 @@
 
   .eyebrow {
     display: inline-block;
-    background: rgba(255, 184, 0, 0.12);
+    background: rgba(203, 162, 74, 0.12);
     color: var(--accent);
     padding: 6px 14px;
     border-radius: 100px;
@@ -143,7 +143,7 @@
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    border: 1px solid rgba(255, 184, 0, 0.25);
+    border: 1px solid rgba(203, 162, 74, 0.25);
     margin-bottom: 24px;
   }
   .hero h1 {
@@ -182,10 +182,10 @@
   .btn:hover { transform: translateY(-1px); text-decoration: none; }
   .btn-primary {
     background: var(--accent);
-    color: #1A1300;
-    box-shadow: 0 4px 20px rgba(255, 184, 0, 0.25);
+    color: #0D2240;
+    box-shadow: 0 4px 20px rgba(203, 162, 74, 0.25);
   }
-  .btn-primary:hover { background: #FFC933; box-shadow: 0 6px 24px rgba(255, 184, 0, 0.35); }
+  .btn-primary:hover { background: #E0C078; box-shadow: 0 6px 24px rgba(203, 162, 74, 0.35); }
   .btn-secondary {
     background: transparent;
     color: var(--text);
@@ -341,7 +341,7 @@
   }
   .pillar .num {
     display: inline-block;
-    background: rgba(255, 184, 0, 0.12);
+    background: rgba(203, 162, 74, 0.12);
     color: var(--accent);
     width: 36px;
     height: 36px;
@@ -390,7 +390,7 @@
   .feature .icon {
     width: 44px;
     height: 44px;
-    background: rgba(255, 184, 0, 0.1);
+    background: rgba(203, 162, 74, 0.1);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -421,14 +421,14 @@
   }
   .plan.featured {
     border-color: var(--accent);
-    background: linear-gradient(180deg, rgba(255,184,0,0.05), var(--bg-card));
+    background: linear-gradient(180deg, rgba(203,162,74,0.05), var(--bg-card));
   }
   .plan-badge {
     position: absolute;
     top: -12px;
     right: 24px;
     background: var(--accent);
-    color: #1A1300;
+    color: #0D2240;
     padding: 4px 12px;
     border-radius: 100px;
     font-size: 11px;
@@ -504,7 +504,7 @@
   /* ---------- CTA / FORM ---------- */
   .cta-section {
     background:
-      radial-gradient(ellipse at center, rgba(255, 184, 0, 0.08), transparent 70%),
+      radial-gradient(ellipse at center, rgba(203, 162, 74, 0.08), transparent 70%),
       var(--bg);
     text-align: center;
   }
@@ -552,7 +552,7 @@
     width: 100%;
     padding: 16px;
     background: var(--accent);
-    color: #1A1300;
+    color: #0D2240;
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -561,7 +561,7 @@
     margin-top: 12px;
     transition: background 0.2s ease;
   }
-  .waitlist-form button:hover { background: #FFC933; }
+  .waitlist-form button:hover { background: #E0C078; }
   .form-note {
     color: var(--text-dim);
     font-size: 13px;
@@ -580,7 +580,7 @@
 
   /* ---------- FOOTER ---------- */
   footer {
-    background: #08090C;
+    background: #081A31;
     padding: 60px 0 30px;
     border-top: 1px solid var(--border);
     text-align: center;
